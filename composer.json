@@ -1,0 +1,36 @@
+{
+  "name": "seregazhuk/reactphp-fswatch",
+  "type": "library",
+  "description": "Async Filesystem Watcher for ReactPHP",
+  "license": "MIT",
+  "keywords": [
+    "php",
+    "asynchronous",
+    "fswatch",
+    "reactphp",
+    "filesystem"
+  ],
+  "authors": [
+    {
+      "name": "Sergey Zhuk",
+      "email": "seregazhuk88@gmail.com",
+      "homepage": "http://sergeyzhuk.me",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "react/event-loop": "^1.1",
+    "evenement/evenement": "^3.0",
+    "react/child-process": "^0.6.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "seregazhuk\\FsWatch\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "seregazhuk\\FsWatch\\Tests\\": "tests"
+    }
+  }
+}
