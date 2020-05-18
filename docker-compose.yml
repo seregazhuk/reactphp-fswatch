@@ -1,7 +1,8 @@
-version: '1.4.2'
+version: '3.4'
 
 services:
   reactphp-fswatch:
-    build: .
-    dockerfile: docker/Dockerfile
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
     tty: true
