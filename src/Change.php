@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Seregazhuk\FsWatch;
+namespace Seregazhuk\ReactFsWatch;
 
-final class WatchEvent
+final class Change
 {
     private int $bitwise;
+
     private string $file;
 
     private const NO_OP = 0;
@@ -31,12 +32,7 @@ final class WatchEvent
         $this->file = $file;
     }
 
-    public function getBitwise(): int
-    {
-        return $this->bitwise;
-    }
-
-    public function getFile(): string
+    public function file(): string
     {
         return $this->file;
     }
