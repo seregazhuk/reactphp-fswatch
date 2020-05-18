@@ -1,5 +1,16 @@
 # Watch files for changes with fswatch and ReactPHP.
 
+[![PHP Version](https://img.shields.io/packagist/php-v/seregazhuk/reactphp-fswatch.svg)](https://php.net/)
+[![Build Status](https://travis-ci.org/seregazhuk/reactphp-fswatch.svg?branch=master)](https://travis-ci.org/seregazhuk/reactphp-fswatch)
+[![Total Downloads](https://poser.pugx.org/seregazhuk/reactphp-fswatch/downloads)](https://packagist.org/packages/seregazhuk/reactphp-fswatch)
+
+[![Latest Stable Version](https://poser.pugx.org/seregazhuk/reactphp-fswatch/v/stable)](https://packagist.org/packages/seregazhuk/reactphp-fswatch)
+[![Latest Version](https://img.shields.io/packagist/v/seregazhuk/reactphp-fswatch.svg)](https://packagist.org/packages/seregazhuk/reactphp-fswatch)
+[![Latest Unstable Version](https://poser.pugx.org/seregazhuk/reactphp-fswatch/v/unstable)](https://packagist.org/packages/seregazhuk/reactphp-fswatch)
+
+[![License](https://poser.pugx.org/seregazhuk/reactphp-fswatch/license)](https://packagist.org/packages/seregazhuk/reactphp-fswatch)
+
+
 **Table of contents**
 
 * [Installation](#installation)
@@ -35,10 +46,13 @@ instance of `Change` object. To detect change you can listen to this event and
 handle the event object:
 
 ```php
-$watcher->on('change', static function (Change $event) {
-    $type = $event->isFile() ? 'File' : 'Dir';
-    echo $type . ': ' . $event->file() . ' was changed' . PHP_EOL;
-});
+$watcher->on(
+    'change',
+    static function (Change $event) {
+        $type = $event->isFile() ? 'File' : 'Dir';
+        echo $type . ': ' . $event->file() . ' was changed' . PHP_EOL;
+    }
+);
 ```
 
 Also, you can use a helper method `onChange`:
