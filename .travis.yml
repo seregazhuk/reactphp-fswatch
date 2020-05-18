@@ -19,5 +19,5 @@ before_script:
   - composer install --no-interaction
 
 script:
-  - docker-compose exec reactphp-fswatch vendor/bin/phpunit
+  - docker-compose exec reactphp-fswatch ./vendor/bin/phpunit
 
