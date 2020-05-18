@@ -15,7 +15,7 @@
 
 * [Installation](#installation)
 * [Usage](#usage)
-* [Changes](#changes)
+* [Filesystem Changes](#filesystem-changes)
 
 ## Installation
 
@@ -67,7 +67,7 @@ To stop listening for filesytem use method `stop()`:
 $watcher->stop();
 ```
 
-## Changes
+## Filesystem Changes
 
 On every change you receive `Change` object that contains different details about 
 an event that happened in the filesystem. It has the following helper methods to examine the change:
