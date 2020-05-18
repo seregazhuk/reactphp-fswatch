@@ -22,16 +22,21 @@
         "php": "^7.4",
         "react/event-loop": "^1.1",
         "evenement/evenement": "^3.0",
-        "react/child-process": "^0.6.1"
+        "react/child-process": "^0.6.1",
+        "clue/block-react": "^1.3"
+    },
+    "require-dev": {
+        "symfony/process": "^4.3",
+        "phpunit/phpunit": "^8.0"
     },
     "autoload": {
         "psr-4": {
-            "seregazhuk\\ReactFsWatch\\": "src"
+            "Seregazhuk\\ReactFsWatch\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "seregazhuk\\ReactFsWatch\\Tests\\": "tests"
+            "Seregazhuk\\ReactFsWatch\\Tests\\": "tests"
         }
     }
 }

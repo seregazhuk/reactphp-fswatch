@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace seregazhuk\ReactFsWatch;
+namespace Seregazhuk\ReactFsWatch;
 
 use Evenement\EventEmitterInterface;
 use Evenement\EventEmitterTrait;
@@ -17,13 +17,13 @@ final class FsWatch implements EventEmitterInterface
 
     private Process $process;
 
-    public function __construct(string $cmd, LoopInterface $loop)
+    public function __construct(string $argsAndOptions, LoopInterface $loop)
     {
         if (!self::isAvailable()) {
             throw new \LogicException("fswatch util is required.");
         }
 
-        $this->process = new Process("fswatch -xrn {$cmd}");
+        $this->process = new Process("fswatch -xrn {$argsAndOptions}");
         $this->loop = $loop;
     }
 
@@ -34,7 +34,7 @@ final class FsWatch implements EventEmitterInterface
         return strpos(implode(' ', $output), 'command not found') === false;
     }
 
-    public function watch(): void
+    public function run(): void
     {
         $this->process->start($this->loop);
         $this->process->stderr->on(

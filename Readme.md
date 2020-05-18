@@ -24,8 +24,8 @@ you are going to run. For example if you want to listen to changes inside `src` 
 
 ```php
 $loop = \React\EventLoop\Factory::create();
-$watcher = new \seregazhuk\ReactFsWatch\FsWatch('src', $loop,);
-$watcher->watch();
+$watcher = new \Seregazhuk\ReactFsWatch\FsWatch('src', $loop,);
+$watcher->run();
 
 $loop->run();
 ``` 
