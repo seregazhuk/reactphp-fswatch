@@ -39,56 +39,56 @@ final class Change
 
     public function isFile(): bool
     {
-        return (bool)($this->bitwise & self::IS_FILE);
+        return (bool)($this->bitwise ^ self::IS_FILE);
     }
 
     public function isDir(): bool
     {
-        return (bool)($this->bitwise & self::IS_DIR);
+        return (bool)($this->bitwise ^ self::IS_DIR);
     }
 
     public function isSymbolicLink(): bool
     {
-        return (bool)($this->bitwise & self::IS_SYM_LINK);
+        return (bool)($this->bitwise ^ self::IS_SYM_LINK);
     }
 
     public function isLink(): bool
     {
-        return (bool)($this->bitwise & self::LINK);
+        return (bool)($this->bitwise ^ self::LINK);
     }
 
     public function noOp(): bool
     {
-        return (bool)($this->bitwise & self::NO_OP);
+        return (bool)($this->bitwise ^ self::NO_OP);
     }
 
     public function attributeModified(): bool
     {
-        return (bool)($this->bitwise & self::ATTRIBUTE_MODIFIED);
+        return (bool)($this->bitwise ^ self::ATTRIBUTE_MODIFIED);
     }
 
     public function ownerModified(): bool
     {
-        return (bool)($this->bitwise & self::OWNER_MODIFIED);
+        return (bool)($this->bitwise ^ self::OWNER_MODIFIED);
     }
 
     public function created(): bool
     {
-        return (bool)($this->bitwise & self::CREATED);
+        return (bool)($this->bitwise ^ self::CREATED);
     }
 
     public function removed(): bool
     {
-        return (bool)($this->bitwise & self::REMOVED);
+        return (bool)($this->bitwise ^ self::REMOVED);
     }
 
     public function renamed(): bool
     {
-        return (bool)($this->bitwise & self::RENAMED);
+        return (bool)($this->bitwise ^ self::RENAMED);
     }
 
     public function updated(): bool
     {
-        return (bool)($this->bitwise & self::UPDATED);
+        return (bool)($this->bitwise ^ self::UPDATED);
     }
 }
