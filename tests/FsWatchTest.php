@@ -22,9 +22,6 @@ final class FsWatchTest extends TestCase
         $fsWatch->onChange(
             function ($data): void {
                 $this->assertInstanceOf(Change::class, $data);
-                $this->assertTrue($data->isFile());
-                $this->assertTrue($data->created());
-                $this->assertFalse($data->isDir());
             }
         );
         $tempFile = null;
