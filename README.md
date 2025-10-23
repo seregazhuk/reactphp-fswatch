@@ -33,11 +33,8 @@ First of all, you create a *watcher* object providing a loop and fswatch command
 you are going to run. For example if you want to listen to changes inside `src` directory:
 
 ```php
-$loop = \React\EventLoop\Factory::create();
-$watcher = new \Seregazhuk\ReactFsWatch\FsWatch('src', $loop,);
+$watcher = new \Seregazhuk\ReactFsWatch\FsWatch('src');
 $watcher->run();
-
-$loop->run();
 ``` 
 
 Once there are changes in the directory the watcher fires `change` event that contains an

@@ -1,3 +1,6 @@
+# 1.1.0 (2025-10-23)
+* Remove loop dependency
+
 ## 1.0.0 (2025-10-23)
 * First stable release
 
