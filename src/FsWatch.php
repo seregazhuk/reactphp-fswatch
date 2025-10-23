@@ -13,25 +13,22 @@ final class FsWatch implements EventEmitterInterface
 {
     use EventEmitterTrait;
 
-    private LoopInterface $loop;
-
     private Process $process;
 
-    public function __construct(string $argsAndOptions, LoopInterface $loop)
+    public function __construct(string $argsAndOptions, private LoopInterface $loop)
     {
-        if (!self::isAvailable()) {
-            throw new \LogicException("fswatch util is required.");
+        if (! self::isAvailable()) {
+            throw new \LogicException('fswatch util is required.');
         }
 
         $this->process = new Process("fswatch -xrn {$argsAndOptions}");
-        $this->loop = $loop;
     }
 
     public static function isAvailable(): bool
     {
         exec('fswatch 2>&1', $output);
 
-        return strpos(implode(' ', $output), 'command not found') === false;
+        return in_array(str_contains(implode(' ', $output), 'command not found'), [0, false], true);
     }
 
     public function run(): void
@@ -39,16 +36,16 @@ final class FsWatch implements EventEmitterInterface
         $this->process->start($this->loop);
         $this->process->stderr->on(
             'data',
-            function ($data) {
+            function ($data): void {
                 $this->emit('error', [$data]);
             }
         );
 
         $this->process->stdout->on(
             'data',
-            function ($data) {
+            function ($data): void {
                 [$file, $bitwise] = explode(' ', $data);
-                $event = new Change($file, (int)$bitwise);
+                $event = new Change($file, (int) $bitwise);
                 $this->emit('change', [$event]);
             }
         );
