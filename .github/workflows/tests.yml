@@ -35,6 +35,12 @@ jobs:
       - name: Check Out Code
         uses: actions/checkout@v4
 
+      - name: Install fswatch
+        run: |
+          sudo add-apt-repository ppa:hadret/fswatch \
+          sudo apt-get update \
+          sudo apt-get install fswatch
+
       - name: Setup PHP ${{ matrix.php }}
         uses: shivammathur/setup-php@v2
         with:
