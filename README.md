@@ -1,7 +1,6 @@
 # Watch files for changes with fswatch and ReactPHP.
 
 [![PHP Version](https://img.shields.io/packagist/php-v/seregazhuk/reactphp-fswatch.svg)](https://php.net/)
-[![Build Status](https://travis-ci.org/seregazhuk/reactphp-fswatch.svg?branch=master)](https://travis-ci.org/seregazhuk/reactphp-fswatch)
 [![Total Downloads](https://poser.pugx.org/seregazhuk/reactphp-fswatch/downloads)](https://packagist.org/packages/seregazhuk/reactphp-fswatch)
 
 [![Latest Stable Version](https://poser.pugx.org/seregazhuk/reactphp-fswatch/v/stable)](https://packagist.org/packages/seregazhuk/reactphp-fswatch)

@@ -5,28 +5,30 @@ declare(strict_types=1);
 namespace Seregazhuk\ReactFsWatch\Tests;
 
 use PHPUnit\Framework\TestCase;
-use React\EventLoop\Factory;
+use React\EventLoop\Loop;
 use Seregazhuk\ReactFsWatch\Change;
 use Seregazhuk\ReactFsWatch\FsWatch;
 
-use function Clue\React\Block\sleep;
+use function React\Async\delay;
 
 final class FsWatchTest extends TestCase
 {
     /** @test */
     public function it_emits_change_event_on_fs_changes(): void
     {
-        $loop = Factory::create();
+        $loop = Loop::get();
         $fsWatch = new FsWatch(__DIR__, $loop);
         $fsWatch->run();
         $fsWatch->onChange(
-            function ($data) {
+            function ($data): void {
                 $this->assertInstanceOf(Change::class, $data);
             }
         );
         $tempFile = tempnam(__DIR__, '');
 
-        sleep(1, $loop);
+        delay(1);
         unlink($tempFile);
+        $loop->stop();
+        $this->expectNotToPerformAssertions();
     }
 }
