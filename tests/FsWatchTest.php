@@ -17,18 +17,22 @@ final class FsWatchTest extends TestCase
     public function it_emits_change_event_on_fs_changes(): void
     {
         $loop = Loop::get();
-        $fsWatch = new FsWatch(__DIR__, $loop);
+        $fsWatch = new FsWatch(__DIR__);
         $fsWatch->run();
         $fsWatch->onChange(
             function ($data): void {
                 $this->assertInstanceOf(Change::class, $data);
+                $this->assertTrue($data->isFile());
+                $this->assertTrue($data->created());
+                $this->assertFalse($data->isDir());
             }
         );
-        $tempFile = tempnam(__DIR__, '');
-
-        delay(1);
+        $tempFile = null;
+        $loop->addTimer(1, function () use (&$tempFile): void {
+            $tempFile = tempnam(__DIR__, '');
+        });
+        delay(2);
         unlink($tempFile);
         $loop->stop();
-        $this->expectNotToPerformAssertions();
     }
 }

@@ -7,7 +7,6 @@ namespace Seregazhuk\ReactFsWatch;
 use Evenement\EventEmitterInterface;
 use Evenement\EventEmitterTrait;
 use React\ChildProcess\Process;
-use React\EventLoop\LoopInterface;
 
 final class FsWatch implements EventEmitterInterface
 {
@@ -15,7 +14,7 @@ final class FsWatch implements EventEmitterInterface
 
     private Process $process;
 
-    public function __construct(string $argsAndOptions, private LoopInterface $loop)
+    public function __construct(string $argsAndOptions)
     {
         if (! self::isAvailable()) {
             throw new \LogicException('fswatch util is required.');
@@ -33,7 +32,7 @@ final class FsWatch implements EventEmitterInterface
 
     public function run(): void
     {
-        $this->process->start($this->loop);
+        $this->process->start();
         $this->process->stderr->on(
             'data',
             function ($data): void {
