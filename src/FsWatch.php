@@ -8,6 +8,8 @@ use Evenement\EventEmitterInterface;
 use Evenement\EventEmitterTrait;
 use React\ChildProcess\Process;
 
+use function React\Async\delay;
+
 final class FsWatch implements EventEmitterInterface
 {
     use EventEmitterTrait;
@@ -20,14 +22,20 @@ final class FsWatch implements EventEmitterInterface
             throw new \LogicException('fswatch util is required.');
         }
 
-        $this->process = new Process("fswatch -xrn {$argsAndOptions}");
+        $this->process = new Process("fswatch -xrn $argsAndOptions");
     }
 
     public static function isAvailable(): bool
     {
-        exec('fswatch 2>&1', $output);
+        $process = new Process('which fswatch');
+        $process->start();
 
-        return in_array(str_contains(implode(' ', $output), 'command not found'), [0, false], true);
+        delay(0.1); // Just wait
+        if ($process->isRunning()) {
+            $process->terminate();
+        }
+
+        return $process->getExitCode() === 0;
     }
 
     public function run(): void

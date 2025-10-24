@@ -1,3 +1,6 @@
+# 1.1.1. (2025-10-24)
+* Fix: fswatch availability check
+
 # 1.1.0 (2025-10-23)
 * Remove loop dependency
 
